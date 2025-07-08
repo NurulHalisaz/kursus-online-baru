@@ -52,6 +52,16 @@ def hapus_kursus():
     except ValueError:
         print("Masukkan angka yang valid.")
 
+def cari_kursus():
+    keyword = input("Masukkan kata kunci nama kursus: ").lower()
+    ditemukan = False
+    for k in kursus_list:
+        if keyword in k['nama'].lower():
+            print(f"{k['nama']} - {k['tingkat']} - {k['deskripsi']} - Rp{k['harga']}")
+            ditemukan = True
+    if not ditemukan:
+        print("Kursus tidak ditemukan.")
+
 def daftar_ke_kursus(username):
     tampilkan_semua_kursus()
     try:
@@ -90,7 +100,8 @@ def menu_user(username):
         print(f"\n=== MENU USER ({username}) ===")
         print("1. Lihat semua kursus")
         print("2. Daftar ke kursus")
-        print("3. Logout")
+        print("3. Cari kursus")
+        print("4. Logout")
         pilihan = input("Pilih menu: ")
 
         if pilihan == "1":
@@ -98,6 +109,8 @@ def menu_user(username):
         elif pilihan == "2":
             daftar_ke_kursus(username)
         elif pilihan == "3":
+            cari_kursus()
+        elif pilihan == "4":
             print("Logout dari Pengguna.")
             break
         else:
